@@ -5,8 +5,9 @@ cd /app
 
 echo "Starting Vue container..."
 
-if [ ! -d "node_modules" ]; then
+if [ ! -d "node_modules" ] || [ ! -f "node_modules/vite/package.json" ]; then
     echo "Installing npm packages..."
+    rm -rf node_modules
     npm install
 fi
 

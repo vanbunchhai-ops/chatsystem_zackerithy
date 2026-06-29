@@ -116,7 +116,7 @@ services:
     image: mysql:8.0
     container_name: mysql-container
     environment:
-      MYSQL_DATABASE: chat_system
+      MYSQL_DATABASE: chatsystem_zeckerithy
       MYSQL_USER: chat_user
       MYSQL_PASSWORD: chat_password
       MYSQL_ROOT_PASSWORD: root
@@ -292,7 +292,7 @@ Laravel's database connection is configured in `laravel-app/.env.example`. Copy 
 | `DB_CONNECTION` | `mysql` | Laravel uses the MySQL driver |
 | `DB_HOST` | `mysql-service` | Docker service name — resolved by Docker's internal DNS, not `localhost` |
 | `DB_PORT` | `3306` | MySQL default port |
-| `DB_DATABASE` | `chat_system` | Database name |
+| `DB_DATABASE` | `chatsystem_zeckerithy` | Database name |
 | `DB_USERNAME` | `chat_user` | Application user |
 | `DB_PASSWORD` | `chat_password` | Password for `chat_user` |
 
@@ -377,7 +377,7 @@ docker compose logs -f laravel-service
 | Shell into Laravel container | `docker exec -it laravel-container bash` |
 | Shell into Vue.js container | `docker exec -it vuejs-container sh` |
 | Shell into MySQL container | `docker exec -it mysql-container bash` |
-| Connect to MySQL directly | `docker exec -it mysql-container mysql -u chat_user -p chat_system` |
+| Connect to MySQL directly | `docker exec -it mysql-container mysql -u chat_user -p chatsystem_zeckerithy` |
 | Rebuild a single service | `docker compose build laravel-service` |
 | Restart a single service | `docker compose restart laravel-service` |
 | Remove stopped containers | `docker compose rm` |
@@ -385,6 +385,19 @@ docker compose logs -f laravel-service
 ---
 
 ## Troubleshooting
+
+### `cannot execute binary file` when opening a shell
+
+Use **one** shell only — do not combine `bash` and `sh`:
+
+| Container | Correct | Wrong |
+|---|---|---|
+| Laravel | `docker compose exec laravel-service bash` | `docker compose exec laravel-service bash sh` |
+| Vue.js | `docker compose exec vuejs-service sh` | `docker compose exec vuejs-service sh bash` |
+
+`bash sh` tells bash to run a script named `sh`, which causes `/usr/bin/sh: cannot execute binary file`.
+
+Also check spelling: the command is **`exec`**, not `exac`.
 
 ### Laravel fails on first `docker compose up` with a migration error
 

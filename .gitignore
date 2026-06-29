@@ -9,3 +9,15 @@ Desktop.ini
 *.suo
 *.swp
 
+# Environment
+.env
+.env.local
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build artifacts
+dist/
+dist-ssr/
+.vite/

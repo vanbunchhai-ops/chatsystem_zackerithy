@@ -163,8 +163,8 @@ Access at: **http://localhost:5173**
 | View container logs | `docker compose logs` |
 | Follow logs live | `docker compose logs -f` |
 | Follow logs for one service | `docker compose logs -f laravel-service` |
-| Shell into Laravel container | `docker compose exec laravel-service bash` |
-| Shell into Vue.js container | `docker compose exec vuejs-service sh` |
+| Shell into Laravel container | `docker compose exec laravel-service bash` (use `bash` only — not `bash sh`) |
+| Shell into Vue.js container | `docker compose exec vuejs-service sh` (use `sh` only — not `sh bash`) |
 | Rebuild a single service | `docker compose build laravel-service` |
 | Restart a single service | `docker compose restart laravel-service` |
 | Remove stopped containers | `docker compose rm` |

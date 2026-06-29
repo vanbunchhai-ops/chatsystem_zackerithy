@@ -1,6 +1,7 @@
 services:
   laravel-service:
     container_name: laravel-container
+    restart: unless-stopped
     build:
       context: .
       dockerfile: docker/laravel/Dockerfile
@@ -17,6 +18,7 @@ services:
 
   vuejs-service:
     container_name: vuejs-container
+    restart: unless-stopped
     build:
       context: .
       dockerfile: docker/vuejs/Dockerfile
