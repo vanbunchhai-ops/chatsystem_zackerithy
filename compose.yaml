@@ -35,7 +35,7 @@ services:
     container_name: mysql-container
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: chat_system_app
+      MYSQL_DATABASE: chatsystem_zeckerithy
       MYSQL_USER: chat_user
       MYSQL_PASSWORD: password_user
       MYSQL_ROOT_PASSWORD: root
